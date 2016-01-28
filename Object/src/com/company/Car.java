@@ -1,17 +1,49 @@
 package com.company;
 
+import java.util.Random;
+
 public class Car {
 
     private int year;
     private String brand;
     private String color;
-    private static int counter = 0;
+    private int previousOwners;
+    private Person owner;
+    private int licensePlate;
+    private final int THIS_YEAR = 2016;
 
-    public Car(int newYear, String newBrand, String newColor){
-        year = newYear;
+    private static int carsCreated = 0;
+
+    public Car(String newBrand, String newColor, Person newOwner){
+        year = THIS_YEAR;
         brand = newBrand;
         color = newColor;
-        counter++;
+        carsCreated++;
+        owner = newOwner;
+        licensePlate = generateLicense();
+        previousOwners++;
+    }
+
+    private int generateLicense() {
+        Random r = new Random();
+        return 1000000 + r.nextInt(9000000);
+    }
+
+    public boolean buyCar(Person buyer){
+        if(owner == buyer){
+            return false;
+        }
+        owner = buyer;
+        previousOwners++;
+        return true;
+    }
+
+
+    @Override
+    public String toString() {
+        String s = "year: " + year + ", brand: " + brand + ", color: "
+                + color + ", license: " + licensePlate + ", owner: " + owner + ", HAND: " + previousOwners;
+        return s;
     }
 
     public int getYear(){
@@ -22,8 +54,12 @@ public class Car {
         return color;
     }
 
-    public static int getCounter(){
-        return counter;
+    public static int getCarsCreated(){
+        return carsCreated;
+    }
+
+    public Person getOwner(){
+        return owner;
     }
 
 }
