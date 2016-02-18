@@ -1,12 +1,23 @@
 package com.company;
 
+import java.util.Date;
+
 /**
- * Created by maayanpolitzer on 13/02/2016.
+ * Created by hackeru on 17/02/2016.
  */
 public class Dog extends Animal {
 
+    private Date lastVaccin;
 
-    public Dog(String name, Owner owner) {
-        super(name, owner);
+    public Dog(String name) {
+        super(name);
+    }
+
+    public Date getLastVaccin(){
+        return lastVaccin;
+    }
+
+    public void setLastVaccin(Date date){
+        this.lastVaccin = date;
     }
 }
