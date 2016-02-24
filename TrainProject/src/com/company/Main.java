@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         /*
-             Send me the resoled project to: maayanp163@gmail.com
+             Send me the resolved project to: maayanp163@gmail.com
              until our next meeting at sunday - 28.2.2016!!!!!
              OR
              send me the reason why the project is not ready.
