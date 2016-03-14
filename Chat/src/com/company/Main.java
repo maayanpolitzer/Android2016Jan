@@ -1,6 +1,8 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -12,12 +14,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.ArrayList;
 
-public class Main extends Application {
+public class Main extends Application implements MessagesListener {
 
-    public static final String IP_ADDRESS = "192.168.114.1";
+    public static final String IP_ADDRESS = "192.168.1.101";
     public static final int PORT = 14564;
     private final String USER_NAME = "Maayan";
     private Stage window;
@@ -27,6 +30,7 @@ public class Main extends Application {
     private TextField messageInput;
     private TextArea chatView;
     private ArrayList<String> messagesList;
+    private GetMessagesThread getMessagesThread;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -34,17 +38,20 @@ public class Main extends Application {
         window = primaryStage;
         createUI();
         addActions();
+        startSyncing();
+    }
+
+    private void startSyncing() {
+        getMessagesThread = new GetMessagesThread(this);
+        getMessagesThread.start();
     }
 
     private void sendMessage() {
         if (messageInput.getText().trim().length() > 0) {
-            //System.out.println(messageInput.getText());
             String message = USER_NAME + " : " + messageInput.getText();
-            //chatView.setText(message);
-            messagesList.add(message);
+            //messagesList.add(message);    // DUPLICATE MY MESSAGE BUG!
             SendMessageThread sendMessageThread = new SendMessageThread(message);
             sendMessageThread.start();
-            updateChatView();
         } else {
             System.out.println("cant send empty message...");
         }
@@ -57,20 +64,13 @@ public class Main extends Application {
         for (String message : messagesList) {
             s += message + "\n";
         }
+        System.out.println("START: " + s + ":END");
         chatView.setText(s);
         chatView.positionCaret(chatView.getLength());
     }
 
     private void addActions() {
         sendMessageButton.setOnAction(e -> sendMessage());
-        /*
-        sendMessageButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                sendMessage();
-            }
-        });
-        */
         messageInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -84,6 +84,13 @@ public class Main extends Application {
             @Override
             public void handle(MouseEvent event) {
                 messageInput.requestFocus();
+            }
+        });
+
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                getMessagesThread.shutDown();
             }
         });
     }
@@ -113,4 +120,12 @@ public class Main extends Application {
     }
 
 
+    @Override
+    public void handleNewMessages(String[] returnedMessages) {
+        for (String newMEssage : returnedMessages){
+            messagesList.add(newMEssage);
+        }
+        updateChatView();
+
+    }
 }
