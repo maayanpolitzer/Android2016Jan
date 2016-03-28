@@ -107,7 +107,7 @@ public class Main extends Application implements EventHandler, ChangeDisplayList
         input = new TextField();
         output = new TextArea();
         btn = new Button("START");
-        btn.setDisable(true);
+        //btn.setDisable(true);
         btn2 = new Button("TRANSLATE FROM MORFIX");
         layout.getChildren().addAll(input, output, btn, btn2);
         Scene mainScene = new Scene(layout, 500, 500);
