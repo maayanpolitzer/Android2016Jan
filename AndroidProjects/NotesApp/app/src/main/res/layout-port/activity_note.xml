@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_one">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="add note"
+        android:id="@+id/note_activity_title"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="write a note..."
+            android:layout_margin="16dp"
+            android:textSize="26sp"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/activity_note_edit_text"
+            android:textColor="#0000ff"/>
+
+        </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:visibility="visible"
+        android:id="@+id/activity_note_delete_button"
+        android:text="delete note"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="save note"
+        android:background="#00ff00"
+        android:id="@+id/activity_note_save_button"
+        />
+
+</LinearLayout>
