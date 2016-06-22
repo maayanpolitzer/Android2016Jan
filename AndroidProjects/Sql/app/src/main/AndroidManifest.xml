@@ -15,10 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="com.example.hackeru.sql.gradesprovider"
             android:name=".GradesProvider"
-            android:exported="true"/>
+            android:authorities="com.example.hackeru.sql.gradesprovider"
+            android:exported="true" />
+
+        <activity android:name=".DetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.example.hackeru.sql;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -19,6 +20,16 @@ public class GradesProvider extends ContentProvider {
     // address to the table from in/outside the app.
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
 
+    private static final int GRADES = 1;
+    private static final int GRADES_ID = 2;
+
+    private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+    static {
+        uriMatcher.addURI(AUTHORITY, BASE_PATH, GRADES);    // retrieve all data...
+        uriMatcher.addURI(AUTHORITY, BASE_PATH + "/#", GRADES_ID);  // retrieve one line.
+    }
+
 
     @Override
     public boolean onCreate() {
@@ -30,6 +41,9 @@ public class GradesProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        if (uriMatcher.match(uri) == GRADES_ID){
+            selection = DBOpenHelper.GRADES_ID + "=" + uri.getLastPathSegment();
+        }
         return db.query(DBOpenHelper.TABLE_GRADES, DBOpenHelper.GRADES_ALL_COLUMNS, selection,
                 null, null, null, DBOpenHelper.GRADES_CREATED + " DESC");
     }
@@ -49,11 +63,11 @@ public class GradesProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        return db.delete(DBOpenHelper.TABLE_GRADES, selection, selectionArgs);
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        return db.update(DBOpenHelper.TABLE_GRADES, values, selection, selectionArgs);
     }
 }
