@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hackeru.whatsapp.ChatActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="sendMessage"
+            android:text="send" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="receiveMessage"
+            android:text="receive" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10">
+
+        <LinearLayout
+            android:id="@+id/activity_chat_main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_marginTop="10dp"
+                    android:padding="16dp"
+                    android:textColor="#000"
+                    android:text="ldfkgnlk dlkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldklkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldklkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldklkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldklkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldklkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldklkg dlkg dl kdnfgldkfng dlfkbnd lbkn bldk nldk ndflbkdfnb ldfkbn flgkbngl knf "
+                    android:background="@drawable/rounded_corner_in"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="-15dp"
+                    android:layout_marginTop="9dp"
+                    android:src="@drawable/arrow_in"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="-15dp"
+                    android:layout_marginTop="9dp"
+                    android:src="@drawable/arrow_out"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_marginTop="10dp"
+                    android:padding="16dp"
+                    android:textColor="#000"
+                    android:text="ldfkgnlklkg dldngddlkgnldk ndflbkdfnb ldfkbn flgkbngl knf "
+                    android:background="@drawable/rounded_corner_out"/>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/input_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
+

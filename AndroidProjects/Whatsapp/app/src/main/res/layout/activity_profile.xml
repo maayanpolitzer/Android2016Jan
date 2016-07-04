@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hackeru.whatsapp.ProfileActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:hint="Type your username"
+        android:textColorHint="#7a7aca"
+        android:singleLine="true"
+        android:inputType="text"
+        android:id="@+id/activity_profile_username_edit_text"
+        android:padding="12dp"
+        android:textSize="22sp"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        tools:src="@mipmap/ic_launcher"
+        android:id="@+id/activity_profile_avatar_image_view"
+        android:layout_below="@id/activity_profile_username_edit_text"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change avatar"
+        android:textSize="22sp"
+        android:background="#b3b3b3"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_below="@id/activity_profile_avatar_image_view"
+        android:layout_alignLeft="@id/activity_profile_avatar_image_view"
+        android:layout_alignRight="@id/activity_profile_avatar_image_view"
+        android:textAlignment="center"
+        android:id="@+id/tv"
+        android:textStyle="bold"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/activity_profile_avatar_image_view"
+        android:layout_alignRight="@id/activity_profile_avatar_image_view"
+        android:layout_alignLeft="@id/activity_profile_avatar_image_view"
+        android:id="@+id/activity_profile_change_avatar_frame_layout"
+        android:layout_alignBottom="@id/tv">
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:id="@+id/activity_profile_progress_bar"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="SAVE &amp; CLOSE"
+        android:id="@+id/activity_profile_save_button"/>
+
+
+
+</RelativeLayout>
