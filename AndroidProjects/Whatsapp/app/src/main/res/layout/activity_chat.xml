@@ -15,7 +15,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="sendMessage"
             android:text="send" />
 
         <Button
@@ -42,6 +41,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/send_message_layout"
                 android:orientation="horizontal">
 
                 <TextView
@@ -84,8 +84,6 @@
                     android:textColor="#000"
                     android:text="ldfkgnlklkg dldngddlkgnldk ndflbkdfnb ldfkbn flgkbngl knf "
                     android:background="@drawable/rounded_corner_out"/>
-
-
 
             </LinearLayout>
 
