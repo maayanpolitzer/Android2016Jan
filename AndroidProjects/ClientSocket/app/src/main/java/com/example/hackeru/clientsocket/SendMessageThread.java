@@ -16,13 +16,15 @@ public class SendMessageThread extends Thread {
     private TextView statusTextView;
     private String message;
     private Handler handler;
-    private static final String SERVER_IP = "10.0.15.49";
-    private static final int SERVER_PORT = 10005;
+    public static final String SERVER_IP = "10.0.15.49";
+    public static final int SERVER_PORT = 10005;
+    private int to;
 
-    public SendMessageThread(String message, TextView statusTextView){
+    public SendMessageThread(int to,String message, TextView statusTextView){
         this.message = message;
         this.statusTextView = statusTextView;
         handler = new Handler();
+        this.to = to;
     }
 
     @Override
@@ -32,9 +34,16 @@ public class SendMessageThread extends Thread {
         try {
             socket = new Socket(SERVER_IP, SERVER_PORT);
             out = socket.getOutputStream();
+            out.write(1);
             out.write(MainActivity.ME);
-            out.write(4);
+            out.write(to);
             out.write(message.getBytes());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    statusTextView.setText("Message sent: " + message);
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("Maayan", "Problem connecting to server");

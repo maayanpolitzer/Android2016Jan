@@ -12,13 +12,22 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="message"
         android:id="@+id/editText"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toEditText"
+        android:inputType="number"
+        android:layout_below="@id/editText"
+        android:hint="send to..."/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="send"
-        android:layout_below="@id/editText"
+        android:layout_below="@id/toEditText"
         android:id="@+id/sendBtn"/>
     
     <TextView
@@ -28,4 +37,11 @@
         android:text="waiting for sending..."
         android:layout_below="@id/sendBtn"
         android:textSize="28sp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="get Message"
+        android:id="@+id/getMessageBtn"
+        android:layout_below="@id/statusTextView"/>
 </RelativeLayout>
