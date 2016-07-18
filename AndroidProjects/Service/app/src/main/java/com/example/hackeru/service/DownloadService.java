@@ -61,7 +61,6 @@ public class DownloadService extends Service {
             URL url = new URL(link);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             InputStream in = connection.getInputStream();
-
             File f = new File(getFilesDir(), "image2.jpg");
             FileOutputStream out = new FileOutputStream(f);
             int length;
@@ -70,6 +69,7 @@ public class DownloadService extends Service {
                 out.write(buffer, 0, length);
             }
             Log.d("Maayan", "download completed");
+            sendBroadcast(new Intent("99fm"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

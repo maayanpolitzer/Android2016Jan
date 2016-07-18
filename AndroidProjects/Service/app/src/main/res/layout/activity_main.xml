@@ -15,16 +15,10 @@
         android:text="start service"
         android:id="@+id/startBtn"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="display image"
-        android:layout_below="@id/startBtn"
-        android:id="@+id/displayImageBtn"/>
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"/>
+        android:id="@+id/imageView"
+        android:layout_below="@id/startBtn"/>
 
 </RelativeLayout>
