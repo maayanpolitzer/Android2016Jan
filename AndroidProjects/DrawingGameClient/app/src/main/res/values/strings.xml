@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DrawingGameClient</string>
+    <string name="login_btn_text">Login</string>
+</resources>
