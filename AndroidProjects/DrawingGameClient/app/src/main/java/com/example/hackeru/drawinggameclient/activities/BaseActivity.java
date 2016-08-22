@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by hackeru on 17/08/2016.
@@ -16,6 +17,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected SharedPreferences settings;
     protected SharedPreferences.Editor editor;
+    protected final String TOKEN = "token";
     protected final String EMAIL = "email";
     protected final String PASSWORD = "password";
 
@@ -42,6 +44,14 @@ public class BaseActivity extends AppCompatActivity {
         if (finish) {
             finish();
         }
+    }
+
+    public void registrationComplete(String token){
+
+    }
+
+    public void registrationError(String error){
+
     }
 
 }

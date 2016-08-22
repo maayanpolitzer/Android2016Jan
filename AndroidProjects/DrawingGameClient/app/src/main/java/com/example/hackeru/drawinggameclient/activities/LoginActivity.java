@@ -3,9 +3,12 @@ package com.example.hackeru.drawinggameclient.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.hackeru.drawinggameclient.R;
 import com.example.hackeru.drawinggameclient.infrastructure.ValidationClass;
+import com.example.hackeru.drawinggameclient.threads.BaseThread;
+import com.example.hackeru.drawinggameclient.threads.SendEmailAndPasswordThread;
 
 public class LoginActivity extends BaseActivity {
 
@@ -27,16 +30,19 @@ public class LoginActivity extends BaseActivity {
         String email = ((EditText) findViewById(R.id.activity_login_email_edit_text)).getText().toString();
         String password = ((EditText) findViewById(R.id.activity_login_password_edit_text)).getText().toString();
         if(ValidationClass.validate(email, password)){
-            editor.putString(EMAIL, email);
-            editor.putString(PASSWORD, password);
-            editor.commit();
-            /*
-        TODO:
-        2. send data to server.
-        3. get the boolean from server.
-        5. if true -> start MainActivity.
-         */
-            changeActivity(MainActivity.class, null, true);
+            new SendEmailAndPasswordThread(email, password, this, BaseThread.ACTION_LOGIN).start();
         }
+    }
+
+    @Override
+    public void registrationComplete(String token) {
+        editor.putString(TOKEN, token);
+        editor.commit();
+        changeActivity(MainActivity.class, null, true);
+    }
+
+    @Override
+    public void registrationError(String error) {
+        Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
     }
 }

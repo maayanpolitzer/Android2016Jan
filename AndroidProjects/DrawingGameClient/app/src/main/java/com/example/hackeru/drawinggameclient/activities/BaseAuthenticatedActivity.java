@@ -32,9 +32,8 @@ public abstract class BaseAuthenticatedActivity extends BaseActivity {
 
     private boolean checkIfUserExists(){
 
-        String email = settings.getString(EMAIL, null);
-        String password = settings.getString(PASSWORD, null);
-        if (email != null && password != null){
+        String token = settings.getString(TOKEN, null);
+        if (token != null){
             /**
              * TODO:
              * send data to server.
@@ -42,7 +41,9 @@ public abstract class BaseAuthenticatedActivity extends BaseActivity {
              */
             return true;
         }
+
         return false;
+
     }
 
     @Override

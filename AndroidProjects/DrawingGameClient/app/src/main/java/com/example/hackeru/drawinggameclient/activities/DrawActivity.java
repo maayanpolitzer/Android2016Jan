@@ -13,6 +13,7 @@ public class DrawActivity extends BaseAuthenticatedActivity {
     protected void onLoggedIn(Bundle savedInstanceState) {
         DrawingLayout layout = new DrawingLayout(this);
         setContentView(layout);
+        addContentView(layout.parentLayout, layout.params);
 
     }
 }

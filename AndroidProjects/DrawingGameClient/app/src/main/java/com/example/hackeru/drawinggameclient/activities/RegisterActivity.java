@@ -1,11 +1,15 @@
 package com.example.hackeru.drawinggameclient.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.hackeru.drawinggameclient.R;
 import com.example.hackeru.drawinggameclient.infrastructure.ValidationClass;
+import com.example.hackeru.drawinggameclient.threads.BaseThread;
+import com.example.hackeru.drawinggameclient.threads.SendEmailAndPasswordThread;
 
 public class RegisterActivity extends BaseActivity {
 
@@ -34,12 +38,24 @@ public class RegisterActivity extends BaseActivity {
             3. save data in shared prefrences.
             4. if true -> send to MainActivity.
              */
-            editor.putString(EMAIL, email);
-            editor.putString(PASSWORD, password);
-            editor.commit();
-            changeActivity(MainActivity.class, null, true);
+            new SendEmailAndPasswordThread(email, password, this, BaseThread.ACTION_REGISTER).start();
+
         }
 
+    }
+
+    @Override
+    public void registrationComplete(String token){
+        Log.d("TAG", "complete: " + token);
+        editor.putString(TOKEN, token);
+        editor.commit();
+        changeActivity(MainActivity.class, null, true);
+    }
+
+    @Override
+    public void registrationError(String error){
+        Log.d("TAG", "error");
+        Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
     }
 
     @Override

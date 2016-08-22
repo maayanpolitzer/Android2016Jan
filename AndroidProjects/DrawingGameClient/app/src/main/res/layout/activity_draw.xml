@@ -9,6 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.DrawActivity">
 
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="connect to server"
+        android:onClick="connect"/>
 
 </RelativeLayout>
